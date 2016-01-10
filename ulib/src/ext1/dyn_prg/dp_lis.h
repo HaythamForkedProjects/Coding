@@ -26,6 +26,8 @@
 #ifndef _ULIB_DP_LIS_H
 #define _ULIB_DP_LIS_H
 
+#include <algorithm>
+
 namespace ulib {
 
 /**
@@ -42,60 +44,34 @@ namespace ulib {
 template<typename T>
 int dp_lis(const T seq[], T res[], int num)
 {
-	T   *opt;
-	int *pos;
-	int *sub;
-	int *pred;
-	int max_len;
-
 	if (seq == NULL || num <= 0)
 		return 0;
 
-	opt = new T[num];
-	pos = new int[num];
-	sub = new int[num];
-	pred = new int[num];
+	T  *lis = new T[num];
+	int max_len = 0;
 
-	opt[0] = seq[0];
-	pos[0] = 0;
-	sub[0] = 1;
-	max_len = 1;
-
-	for (int i = 1; i < num; ++i) {
+	for (int i = 0; i < num; ++i) {
 		int m, j, k;
 		for (j = 0, k = max_len; j < k;) {
 			m = (j + k) / 2;
-			if (seq[i] == opt[m]) {
+			if (seq[i] == lis[m]) {
 				j = m;
 				break;
 			}
-			if (seq[i] < opt[m])
+			if (seq[i] < lis[m])
 				k = m;
 			else
 				j = m + 1;
 		}
-		opt[j] = seq[i];
-		pos[j] = i;
-		sub[i] = j + 1;
-		if (j > 0) {
-			pred[i] = pos[j - 1];
-			if (j == max_len)
-				++max_len;
-		}
+		lis[j] = seq[i];
+		if (j == max_len)
+		    ++max_len;
 	}
 
-	if (res) {
-		int p = pos[max_len - 1];
-		for (int i = max_len - 1; i >= 0; --i) {
-			res[i] = seq[p];
-			p = pred[p];
-		}
-	}
+	if (res)
+	    std::copy(lis, lis + max_len, res);
 
-	delete [] opt;
-	delete [] pos;
-	delete [] sub;
-	delete [] pred;
+	delete [] lis;
 
 	return max_len;
 }
