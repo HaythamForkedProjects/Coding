@@ -3,7 +3,7 @@ ULIB consists of components in multithreading, parallel computing, data indexing
 
 Some building blocks are based on other open-source projects, such as the Linux kernel. Please refer to the copyright of the specific source code files.
 
-###ULIB has been used in:
+###ULIB has been widely used in industry:
 * TIBCO Spotfire - Business intelligence analytics software & data visualization. http://spotfire.tibco.com. Check out https://docs.tibco.com/pub/spotfire/6.0.3/license/TIB_sfire_6.0.3_license.pdf.
 * Xfinity Open Source Software, see http://my.xfinity.com/terms/opensource.
 * The EOS Project, a low-latency disk-based storage infrastructure. Check out http://eos.cern.ch/cgi-bin/cgit.cgi/eos/plain/common/ulib.
