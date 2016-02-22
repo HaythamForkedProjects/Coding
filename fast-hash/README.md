@@ -8,17 +8,17 @@ The fast-hash is a simple, robust, and efficient general-purpose hash function.
 
 The fast-hash primarily computes 64-bit and 32-bit hash values. For 128-bit hash functions, I recommend Google MurmurHash3 and SpookyHash. However, they can be an overkill for 64-bit hashing applications.
 
-##Widely used in Industry and Academia:
+##Widely used in industry and academia:
 
-    The GNU Hurd Unix Kernel. See http://code.metager.de/source/xref/hurd/hurd/libdiskfs/node-cache.c.
-    Google SMHasher. See https://github.com/rurban/smhasher/blob/master/fasthash.cpp.
-    Considered one of the best general-purpose integer hash functions according to the paper "MELISSA E. O’NEILL, PCG: A Family of Simple Fast Space-Efficient Statistically Good Algorithms for Random Number Generation".
-    Used for prestigious ML research. See the paper "Xiatian Zhang, Wei Fan, Nan Du, Random Decision Hashing for Massive Data Learning, JMLR'15".
-    ArangoDB - the multi-purpose NoSQL DB. https://www.arangodb.org.
-    Fast incremental JSON parser - https://github.com/bjouhier/i-json.
-    jelly-hash - Low memory multithreaded hash table. https://github.com/noporpoise/jelly-hash.
-    probing - Linear probing hash tables in Go. https://github.com/kho/probing.
-    mrkcommon - Markiyan's library of "commonly used" functions. https://github.com/mkushnir/mrkcommon. 
+   * The GNU Hurd Unix Kernel. See http://code.metager.de/source/xref/hurd/hurd/libdiskfs/node-cache.c.
+   * Google SMHasher. See https://github.com/rurban/smhasher/blob/master/fasthash.cpp.
+   * Considered one of the best general-purpose integer hash functions according to the paper "MELISSA E. O’NEILL, PCG: A Family of Simple Fast Space-Efficient Statistically Good Algorithms for Random Number Generation".
+   * Used for prestigious ML research. See the paper "Xiatian Zhang, Wei Fan, Nan Du, Random Decision Hashing for Massive Data Learning, JMLR'15".
+   * ArangoDB - the multi-purpose NoSQL DB. https://www.arangodb.org.
+   * Fast incremental JSON parser - https://github.com/bjouhier/i-json.
+   * jelly-hash - Low memory multithreaded hash table. https://github.com/noporpoise/jelly-hash.
+   * probing - Linear probing hash tables in Go. https://github.com/kho/probing.
+   * mrkcommon - Markiyan's library of "commonly used" functions. https://github.com/mkushnir/mrkcommon. 
 
 ##How does it work?
 
