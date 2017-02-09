@@ -9,7 +9,8 @@ The fast-hash is a simple, robust, and efficient general-purpose hash function.
 The fast-hash primarily computes 64-bit and 32-bit hash values. For 128-bit hash functions, I recommend Google MurmurHash3 and SpookyHash. However, they can be an overkill for 64-bit hashing applications.
 
 ##Widely used in industry and academia:
-
+   * Apple iOS Kernel: https://opensource.apple.com/source/xnu/xnu-3789.21.4/iokit/Kernel/IOKitDebug.cpp.
+   * Apache Giraph: https://giraph.apache.org/xref/org/apache/giraph/block_app/library/striping/StripingUtils.html.
    * The GNU Hurd Unix Kernel. See http://code.metager.de/source/xref/hurd/hurd/libdiskfs/node-cache.c.
    * Google SMHasher. See https://github.com/rurban/smhasher/blob/master/fasthash.cpp.
    * Considered one of the best general-purpose integer hash functions according to the paper "MELISSA E. O’NEILL, PCG: A Family of Simple Fast Space-Efficient Statistically Good Algorithms for Random Number Generation".
