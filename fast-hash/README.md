@@ -1,4 +1,4 @@
-##Why fast-hash?
+## Why fast-hash?
 
 The fast-hash is a simple, robust, and efficient general-purpose hash function.
 
@@ -8,7 +8,7 @@ The fast-hash is a simple, robust, and efficient general-purpose hash function.
 
 The fast-hash primarily computes 64-bit and 32-bit hash values. For 128-bit hash functions, I recommend Google MurmurHash3 and SpookyHash. However, they can be an overkill for 64-bit hashing applications.
 
-##Widely used in industry and academia:
+## Widely used in industry and academia:
    * Apple iOS Kernel: https://opensource.apple.com/source/xnu/xnu-3789.21.4/iokit/Kernel/IOKitDebug.cpp.
    * Apache Giraph: https://giraph.apache.org/xref/org/apache/giraph/block_app/library/striping/StripingUtils.html.
    * The GNU Hurd Unix Kernel. See https://github.com/joshumax/hurd/blob/master/libdiskfs/node-cache.c.
@@ -21,7 +21,7 @@ The fast-hash primarily computes 64-bit and 32-bit hash values. For 128-bit hash
    * probing - Linear probing hash tables in Go. https://github.com/kho/probing.
    * mrkcommon - Markiyan's library of "commonly used" functions. https://github.com/mkushnir/mrkcommon. 
 
-##How does it work?
+## How does it work?
 
 First, interested readers can learn more about the math from the seminar paper:
 http://www.jstatsoft.org/v08/i14/paper. 
@@ -48,7 +48,7 @@ Whereas MurmurHash2's mix function has two multiplications and one Xorshift:
 
 Generally, multiplication, which takes tens of CPU clocks, is much more expensive than Xorshift, which takes only several CPU clocks, on almost all platforms. Thus the fast-hash should be more efficient than MurmurHash2, especially when the size of input data grows. Furthermore, the mix function of Murmurhash2 is slightly flawed as it produces biased bits according to the SMHasher results.
 
-##Hash Value of Other Bit Lengths 
+## Hash Value of Other Bit Lengths 
 
 To obtain hash values of other bit lengths than 32 or 64, the simplest way is to use bitwise AND to extract bits from the the 64-bit hash value calculated by the fast-hash. Another more robust technique suggested by Knuth in his masterpiece "The Art of Computer Programming Vol2" follows:
 
@@ -57,7 +57,7 @@ Let H be the 64-bit hash value. A 32-bit hash value can be computed using (H - (
     H = (H >> 32) * 2^32 + H & (2^32 - 1)
       = (H >> 32) * (2^32 + 1) - (H >> 32) + H & (2^32 - 1)
 
-##Results 
+## Results 
 
 The fast-hash was tested using the SMHasher(http://code.google.com/p/smhasher), which is known as the "DieHarder" hash testing. The test results show that the fast-hash is a better choice than Google MurmurHash2 (slightly biased and slower than the fast-hash), Jenkins hash function (moderately biased and notably slower than the fast-hash), and a few other popular ones such as Bernstein, CRC, SDBM, FNV, and etc.
 ```
