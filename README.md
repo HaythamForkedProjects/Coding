@@ -1,4 +1,4 @@
 ## Building blocks for developing high-performance applications
 
-* ulib - An Efficient Parallel Algorithm Library in C/C++
-* fast-hash - An "Optimal" General-Purpose Hash Function
+* ulib - A C++ library for high-performance computation
+* fast-hash - A fast general-purpose hash function learned through genetic programming
