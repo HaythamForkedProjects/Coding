@@ -1,9 +1,10 @@
 QUIET	?= @
 
 TARGET	= libulib.a
+LIBS	= $(filter-out $(TARGET), $(wildcard *.a))
 
-$(TARGET):
-	$(QUIET)for lib in $(wildcard *.a); do $(AR) x $${lib}; done;
+$(TARGET): $(LIBS)
+	$(QUIET)for lib in $(LIBS); do $(AR) x $${lib}; done;
 	$(QUIET)$(AR) csr $(TARGET) *.o
 	$(QUIET)rm -rf *.o
 

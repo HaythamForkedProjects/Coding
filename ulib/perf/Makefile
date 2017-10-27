@@ -1,7 +1,9 @@
 .PHONY: all clean
 
 all:
-	make -C mapreduce/
+	make -C mapcombine/
+	make -C kmeans
 
 clean:
-	make -C mapreduce/ clean
+	make -C mapcombine/ clean
+	make -C kmeans clean

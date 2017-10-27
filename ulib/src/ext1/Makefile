@@ -7,6 +7,7 @@ all:
 	make -C console/
 	make -C rng/
 	make -C dyn_prg/
+	make -C numerical/
 
 clean:
 	make -C containers/ clean
@@ -15,3 +16,4 @@ clean:
 	make -C console/ clean
 	make -C rng/ clean
 	make -C dyn_prg/ clean
+	make -C numerical/ clean

@@ -51,8 +51,7 @@ void constant_insert(long ins, long get)
 	printf("insertion done\n");
 
 	for (t = 0; t < get; t++) {
-		chain_hash_map_r<uint64_t,uint64_t>::const_iterator it =
-			map.find(myrand());
+	        map.find(myrand());
 		counter++;
 	}
 

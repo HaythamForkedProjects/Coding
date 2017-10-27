@@ -2,15 +2,15 @@ QUIET	?= @
 INCPATH = ../../include
 LIBPATH = ../../lib
 
-CXXFLAGS ?=-O2 -W -Wall -Werror -I$(INCPATH)
+CXXFLAGS ?=-g3 -O2 -W -Wall -I$(INCPATH) -DUNDEBUG -Wimplicit-fallthrough=0
 #PROFILER  =-L../../../gperftools/lib -lprofiler 
 #TCMALLOC  =-L../../../gperftools/lib -ltcmalloc
 LDFLAGS   =-L$(LIBPATH) $(PROFILER) $(TCMALLOC) -lulib -lpthread -lrt
 
-APP = $(addsuffix .test, $(basename $(wildcard *.cpp)))
+APP = $(patsubst %.cpp, %.app, $(wildcard *.cpp))
 
-%.test: %.cpp
-	$(QUIET)echo -e "  GEN	"$@
+%.app: %.cpp
+	$(QUIET)echo "GEN "$@
 	$(QUIET)$(CXX) $(CXXFLAGS) -o $@ $< $(LDFLAGS)
 
 all: $(APP)

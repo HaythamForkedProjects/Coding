@@ -12,10 +12,10 @@ using namespace ulib;
 
 int main()
 {
-	char buf[4096] = { 0 };
+	char buf[1024] = { 0 };
 	open_hash_set<uint64_t> hashes;
 
-	for (unsigned s = 0; s < 1000; ++s) {
+	for (unsigned s = 0; s < 256; ++s) {
 		for (unsigned i = 0; i < sizeof(buf); ++i) {
 			uint64_t hash = hash_fast64(buf, i, s);
 			if (hashes.contain(hash)) {

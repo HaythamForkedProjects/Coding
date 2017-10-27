@@ -1,5 +1,5 @@
-PREFIX	= ../../..
-LIBNAME	= libmr.a
+PREFIX	= ../../../..
+LIBNAME	= libopt.a
 
 .PHONY: all
 all: install_headers install_libs

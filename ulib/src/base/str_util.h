@@ -41,6 +41,11 @@ char *nextline(char *buf, long size);
 const char *getfield(const char *from, const char *end,
 		     int id, char *field, int flen, int delim);
 
+/* Match the test against regular expression, returns true if it
+ * matches, 0 otherwise.
+ * Supported characters: 0-9a-zA-Z$^.* */
+int regex_match(const char *text, const char *regex);
+
 #ifdef __cplusplus
 }
 #endif

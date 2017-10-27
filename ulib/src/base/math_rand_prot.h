@@ -82,14 +82,16 @@
 #define RAND_NR_DOUBLE(x)			\
 	(5.42101086242752217E-20 * (x))
 
-#define RAND_SAMPLE(_n, _r, _buf) do {					\
-		/* reference:						\
-		   http://code.activestate.com/recipes/272884/ */	\
-		int _i, _k, _pop = (_n);				\
-		for (_i = (int)(_r), _k = 0; _i >= 0; --_i) {		\
-			double _z = 1., _x = drand48();			\
+/* reference:
+   http://code.activestate.com/recipes/272884/ */
+#define RAND_SAMPLE(_n, _r, _buf, _seed) do {				\
+		int64_t _i, _k, _pop = (_n);				\
+		uint64_t _rn = (_seed);					\
+		for (_i = (int64_t)(_r), _k = 0; _i >= 0; --_i) {	\
+			RAND_XORSHIFT64(_rn);				\
+			double _z = 1., _x = RAND_NR_DOUBLE(_rn);	\
 			while (_x < _z) _z -= _z * _i / (_pop--);	\
-			if (_k != (_n) - _pop - 1)			\
+			if (_k != (int64_t)(_n) - _pop - 1)		\
 				_swap((_buf)[_k], (_buf)[(_n) - _pop - 1]); \
 			++_k;						\
 		}							\

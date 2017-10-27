@@ -3,16 +3,16 @@ QUIET		?= @
 INCPATH		= ../include
 LIBPATH		= ../lib
 
-EXTRALIB	?=
+EXTRALIB	?= -L ../../gperftools/lib/
 
-CXXFLAGS	?= -g3 -O2 -W -Wall -Werror
-LDFLAGS		?= -lulib $(EXTRALIB) -lpthread -lrt
-DEBUG		?=
+CXXFLAGS	?= -g3 -O0 -W -Wall -fpermissive
+LDFLAGS		?= -lulib $(EXTRALIB) -lpthread -lglpk -lgsl -lcblas -lrt -Wl,-eh-frame-hdr
+DEBUG		?= 
 
-TARGET		= $(addsuffix .test, $(basename $(wildcard *.cpp)))
+TARGET		= $(patsubst %.cpp, %.test, $(wildcard *.cpp))
 
-%.test: %.cpp
-	$(QUIET)echo -e "  GEN	"$@;
+%.test: %.cpp $(LIBPATH)/libulib.a
+	$(QUIET)echo "GEN "$@;
 	$(QUIET)$(CXX) -I $(INCPATH) $(CXXFLAGS) $(DEBUG) $< -o $@ -L $(LIBPATH) $(LDFLAGS);
 
 all: $(TARGET)

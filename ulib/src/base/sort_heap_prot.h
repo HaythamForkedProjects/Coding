@@ -35,7 +35,7 @@
 	heapsort_##name(type *base, type *last)		\
 	{						\
 		heap_init_##name(base, last);		\
-			heap_sort_##name(base, last);	\
+		heap_sort_##name(base, last);	        \
 	}
 
 #endif	/* _ULIB_SORT_HEAP_PROT_H */

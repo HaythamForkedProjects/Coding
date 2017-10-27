@@ -22,6 +22,10 @@ int main()
 	assert(getfield(str, str + strlen(str), 5, large, sizeof(large), ' ') == str + 21);
 	assert(strcmp(large, "___GARBAGE___") == 0);
 	assert(getfield(str, str + strlen(str), 6, field, sizeof(field), ' ') == str + strlen(str));
+	assert(regex_match("hello .", "^hello") == 1);
+	assert(regex_match("0hello .", "^hello") == 0);
+	assert(regex_match("seal man zeroxsssskd.", "o.*x.*kd") == 1);
+	assert(regex_match("", ".*.*.*") == 1);
 	printf("passed\n");
 
 	return 0;

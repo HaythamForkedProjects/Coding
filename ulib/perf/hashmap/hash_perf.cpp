@@ -38,13 +38,12 @@
 // Random Number Generator
 #include <ulib/math_rand_prot.h>
 
-//#define AH_DOUBLE_HASHING
-#include <ulib/hash_align.h>
+#include <ulib/hash_open.h>
 
 using google::sparse_hash_map;
 using google::dense_hash_map;
 using __gnu_cxx::hash_map;
-using ulib::align_hash_map;
+using ulib::open_hash_map;
 
 struct nullhash {
 	uint64_t
@@ -184,9 +183,9 @@ int main(int argc, char *argv[])
 	printf("[Dense Hash Map]  Sequential:%.2f ns\tRandom:%.2f ns\tMemory:%lu\n",
 	       measure_insert_time<EasyUseDenseHashMap<uint64_t,uint64_t,nullhash> >(capacity, &skg, &mem),
 	       measure_insert_time<EasyUseDenseHashMap<uint64_t,uint64_t,nullhash> >(capacity, &rkg, &mem), mem);
-	printf("[Align Hash Map]  Sequential:%.2f ns\tRandom:%.2f ns\tMemory:%lu\n",
-	       measure_insert_time<align_hash_map<uint64_t,uint64_t> >(capacity, &skg, &mem),
-	       measure_insert_time<align_hash_map<uint64_t,uint64_t> >(capacity, &rkg, &mem), mem);
+	printf("[Open Hash Map]   Sequential:%.2f ns\tRandom:%.2f ns\tMemory:%lu\n",
+	       measure_insert_time<open_hash_map<uint64_t,uint64_t> >(capacity, &skg, &mem),
+	       measure_insert_time<open_hash_map<uint64_t,uint64_t> >(capacity, &rkg, &mem), mem);
 	printf("[RDE Hash Map]	  Sequential:%.2f ns\tRandom:%.2f ns\tMemory:%lu\n",
 	       measure_insert_time<rde::hash_map<uint64_t,uint64_t,nullhash> >(capacity, &skg, &mem),
 	       measure_insert_time<rde::hash_map<uint64_t,uint64_t,nullhash> >(capacity, &rkg, &mem), mem);
@@ -204,9 +203,9 @@ int main(int argc, char *argv[])
 	printf("[Dense Hash Map]  Sequential:%.2f ns\tRandom:%.2f ns\tMemory:%lu\n",
 	       measure_find_time<EasyUseDenseHashMap<uint64_t,uint64_t,nullhash> >(capacity, loop, &skg, &mem),
 	       measure_find_time<EasyUseDenseHashMap<uint64_t,uint64_t,nullhash> >(capacity, loop, &rkg, &mem), mem);
-	printf("[Align Hash Map]  Sequential:%.2f ns\tRandom:%.2f ns\tMemory:%lu\n",
-	       measure_find_time<align_hash_map<uint64_t,uint64_t> >(capacity, loop, &skg, &mem),
-	       measure_find_time<align_hash_map<uint64_t,uint64_t> >(capacity, loop, &rkg, &mem), mem);
+	printf("[Open Hash Map]   Sequential:%.2f ns\tRandom:%.2f ns\tMemory:%lu\n",
+	       measure_find_time<open_hash_map<uint64_t,uint64_t> >(capacity, loop, &skg, &mem),
+	       measure_find_time<open_hash_map<uint64_t,uint64_t> >(capacity, loop, &rkg, &mem), mem);
 	printf("[RDE Hash Map]	  Sequential:%.2f ns\tRandom:%.2f ns\tMemory:%lu\n",
 	       measure_find_time<rde::hash_map<uint64_t,uint64_t,nullhash> >(capacity, loop, &skg, &mem),
 	       measure_find_time<rde::hash_map<uint64_t,uint64_t,nullhash> >(capacity, loop, &rkg, &mem), mem);

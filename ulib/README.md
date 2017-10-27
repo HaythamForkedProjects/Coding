@@ -1,9 +1,11 @@
-The ULIB is an efficient algorithm library for C and C++.
-ULIB consists of components in multithreading, parallel computing, data indexing, numerical approximation, and cryptography.
+ULIB is a C++ library providing fundamental functions/classes for high-performance computation. The components include building block data structures, numeric approximation and optimization routines, aligned hashing and fast synchronization locks for multi-threading, and parallel computing frameworks such as MapReduce over multicores. The goal of ULIB is to provide flexible interface as well as state-of-the-art efficiency.
 
-Some building blocks are based on other open-source projects, such as the Linux kernel. Please refer to the copyright of the specific source code files.
+Some components of ULIB builds upon other open-source projects. Please refer to the copyright of the specific source code files.
 
-### ULIB has been used in:
+### Why ULIB?
+
+ULIB has been used in:
+
 * TIBCO Spotfire - Business intelligence analytics software & data visualization. http://spotfire.tibco.com. Check out https://docs.tibco.com/pub/spotfire/6.0.3/license/TIB_sfire_6.0.3_license.pdf.
 * Xfinity Open Source Software, see http://my.xfinity.com/terms/opensource.
 * Yumpu.com, check out https://www.yumpu.com/en/document/view/41650370/read-this-end-user-license-agreement-carefully-tibco-product-/23.
@@ -17,7 +19,7 @@ Some building blocks are based on other open-source projects, such as the Linux 
 * probing - Linear probing hash tables in Go. https://github.com/kho/probing.
 * mrkcommon - Markiyan's library of "commonly used" functions. https://github.com/mkushnir/mrkcommon. 
 
-### Summary of Components
+### Component Categories
 
 * Multicore MapReduce implementation as C++ containers.
 * Efficient concurrent hashing routines which outperform several popular ones like Google SparseHash and Intel TBB hashing. 

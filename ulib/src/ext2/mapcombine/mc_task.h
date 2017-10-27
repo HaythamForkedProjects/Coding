@@ -23,42 +23,65 @@
    SOFTWARE.
 */
 
-#include <stdio.h>
-#include <stdint.h>
-#include "os_rdtsc.h"
-#include "math_rand_prot.h"
-#include "mr_dataset.h"
+#ifndef _ULIB_MC_TASK_H
+#define _ULIB_MC_TASK_H
+
+#ifndef _GNU_SOURCE
+#define _GNU_SOURCE
+#endif
+#include <pthread.h>
+
+#include <unistd.h>
+#include <ulib/os_thread.h>
+#include <ulib/mc_typedef.h>
 
 namespace ulib {
 
-namespace mapreduce {
+namespace mapcombine {
 
-dataset_zipf::dataset_zipf(size_t size, size_t range, float s)
-	: _buf(new int[size]), _size(size)
+// Parallel task prototype.
+// Each task owns a unique data chunk and works on that chunk.
+template<typename _Chunk, typename _Pipeline, typename _Mapper>
+class task : public _Mapper, public thread
 {
-	zipf_rng rng;
-	zipf_rng_init(&rng, range, s);
-	for (size_t i = 0; i < size; ++i)
-		_buf[i] = zipf_rng_next(&rng);
-}
+public:
+	typedef _Chunk	  chunk_type;
+	typedef _Pipeline pipeline_type;
+	typedef _Mapper	  mapper_type;
 
-dataset_zipf::~dataset_zipf()
-{ delete [] _buf; }
+	task(int cpuid, const chunk_type &chunk, pipeline_type &pipe)
+		: mapper_type(pipe), _cpuid(cpuid), _chunk(chunk) { }
 
-dataset_random::dataset_random(size_t size, size_t range)
-	: _buf(new int[size]), _size(size)
-{
-	uint64_t t = rdtsc();
-	for (size_t i = 0; i < size; ++i) {
-		uint64_t r = i + t;
-		RAND_INT4_MIX64(r);
-		_buf[i] = r % range;
+	virtual
+	~task()
+	{ stop_and_join(); }
+
+private:
+	int
+	setup()
+	{
+		// each task is assigned to a unique processor
+		cpu_set_t cpu_set;
+		CPU_ZERO(&cpu_set);
+		CPU_SET(_cpuid, &cpu_set);
+		return pthread_setaffinity_np(thread::_tid, sizeof(cpu_set), &cpu_set);
 	}
-}
 
-dataset_random::~dataset_random()
-{ delete [] _buf; }
+	int
+	run()
+	{
+		// iteratively process the chunk
+		for (typename chunk_type::iterator it = _chunk.begin(); it != _chunk.end(); ++it)
+			(*this)(*it);
+		return 0;
+	}
 
-}  // namespace mapreduce
+	int	   _cpuid;
+	chunk_type _chunk;
+};
+
+}  // namespace mapcombine
 
 }  // namespace ulib
+
+#endif

@@ -27,7 +27,7 @@
 #define _ULIB_VER_H
 
 #define ULIB_VERSION_MAJOR 2
-#define ULIB_VERSION_MINOR 0
+#define ULIB_VERSION_MINOR 1
 
 #ifdef __cplusplus
 extern "C" {

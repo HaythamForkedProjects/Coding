@@ -62,3 +62,40 @@ const char *getfield(const char *from, const char *end,
 	}
 	return from;
 }
+
+static inline int __matchstar(char ch, const char *text, const char *regex);
+
+static inline int __match(const char *text, const char *regex)
+{
+	if (*regex == '\0')
+		return 1;
+	if (*regex == '$' && regex[1] == '\0')
+		return *text == '\0';
+	if (regex[1] == '*')
+		return __matchstar(*regex, text, regex + 2);
+	if (*text && (*regex == '.' || *text == *regex))
+		return __match(text + 1, regex + 1);
+	return 0;
+}
+
+int __matchstar(char ch, const char *text, const char *regex)
+{
+	do {
+		if (__match(text, regex))
+			return 1;
+	} while (*text && (*text++ == ch || ch == '.'));
+	return 0;
+}
+
+int regex_match(const char *text, const char *regex)
+{
+	if (*regex == '^')
+		return __match(text, regex + 1);
+
+	do {
+		if (__match(text, regex))
+			return 1;
+	} while (*text++ != '\0');
+
+	return 0;
+}

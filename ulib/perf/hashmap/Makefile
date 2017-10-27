@@ -15,11 +15,11 @@ CXXFLAGS ?=-O2 -W -Wall $(INC)
 LDFLAGS  ?=$(LIB) -lEASTL -ltcmalloc -lrt -lpthread -static
 
 .cpp.o:
-	$(QUIET)echo -e "  CXX	"$<
+	$(QUIET)echo "CXX "$<
 	$(QUIET)$(CXX) -c $(CXXFLAGS) $< -o $@
 
 hash_perf: hash_perf.o
-	$(QUIET)echo -e "  CXX	"hash_perf
+	$(QUIET)echo "CXX "hash_perf
 	$(QUIET)$(CXX) -o hash_perf hash_perf.o $(LDFLAGS)
 
 clean:
