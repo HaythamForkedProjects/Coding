@@ -1,4 +1,4 @@
-ULIB is a C++ library providing fundamental functions/classes for high-performance computation. The components include building block data structures, numeric approximation and optimization routines, aligned hashing and fast synchronization locks for multi-threading, and parallel computing frameworks such as MapReduce over multicores. The goal of ULIB is to provide flexible interface as well as state-of-the-art efficiency.
+ULIB is a C++ library providing fundamental functions/classes for high-performance computation. The components include building block data structures, numeric approximation and optimization routines, aligned hashing and fast synchronization locks for multi-threading, and parallel computing frameworks such as MapReduce over multicores. The goal of ULIB is to provide a flexible interface as well as state-of-the-art efficiency.
 
 Some components of ULIB builds upon other open-source projects. Please refer to the copyright of the specific source code files.
 
